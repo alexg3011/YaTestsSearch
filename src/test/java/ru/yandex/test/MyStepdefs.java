@@ -1,16 +1,30 @@
+package ru.yandex.test;
+
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.yandex.WebDriverSettings;
 
 import java.time.Duration;
 
-import static ru.yandex.MyTestPage.*;
+import static org.junit.Assert.assertTrue;
+import static ru.yandex.test.MyTestPage.*;
 
-public class MyStepdefs1111 extends WebDriverSettings {
+public class MyStepdefs {
+
+    @Before
+    public void init() {
+        System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
+        driver = new ChromeDriver();
+    }
 
     @Given("Open {string}")
     public void open(String arg0) {
@@ -31,5 +45,10 @@ public class MyStepdefs1111 extends WebDriverSettings {
     public void thePageWithSearchResultHasLoadedCompletely() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(webDriver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete"));
+    }
+
+    @Then("Check yandex map is visible")
+    public void checkYandexMapIsVisible() {
+        assert findByXpath(yandexMap).isDisplayed();
     }
 }

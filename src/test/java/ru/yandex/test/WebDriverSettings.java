@@ -1,4 +1,4 @@
-package ru.yandex;
+package ru.yandex.test;
 
 import org.junit.After;
 import org.junit.Before;

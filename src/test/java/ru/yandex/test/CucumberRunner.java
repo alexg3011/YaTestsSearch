@@ -1,4 +1,4 @@
-package ru.yandex;
+package ru.yandex.test;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
