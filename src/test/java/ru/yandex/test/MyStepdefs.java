@@ -1,13 +1,13 @@
 package ru.yandex.test;
 
-import io.cucumber.java.AfterStep;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -17,10 +17,17 @@ import static ru.yandex.test.MyTestPage.*;
 public class MyStepdefs {
 
     private WebDriverSettings wds;
-    private ChromeDriver driver;
+    private MyTestPage myTestPage;
+    private WebDriver driver;
+
+    public MyStepdefs() {
+    }
+
     @Before
     public void init() {
-        driver = wds.init();
+        this.wds = new WebDriverSettings();
+        this.driver = wds.getDriver();
+        this.myTestPage = new MyTestPage();
     }
 
     @Given("Open {string}")
@@ -30,12 +37,12 @@ public class MyStepdefs {
 
     @When("write word {string} into search bar")
     public void writeWordIntoSearchBar(String arg0) {
-        findByXpath(searchField).sendKeys(arg0);
+        myTestPage.findByXpath(searchField, driver).sendKeys(arg0);
     }
 
     @And("click search button")
     public void clickSearchButton() {
-        findByXpath(searchButton).click();
+        myTestPage.findByXpath(searchButton, driver).click();
     }
 
     @Then("The page with search-result has loaded completely")
@@ -46,11 +53,11 @@ public class MyStepdefs {
 
     @Then("Check yandex map is visible")
     public void checkYandexMapIsVisible() {
-        assert findByXpath(yandexMap).isDisplayed();
+        assert myTestPage.findByXpath(yandexMap, driver).isDisplayed();
     }
 
-    @AfterStep
+    @After
     public void close() {
-        driver.quit();
+        wds.close();
     }
 }

@@ -6,16 +6,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class WebDriverSettings {
     private final WebDriver driver;
 
-    public WebDriverSettings(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public ChromeDriver init() {
+    public WebDriverSettings() {
         System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
-        return new ChromeDriver();
+        this.driver = new ChromeDriver();
     }
 
     public void close() {
         driver.quit();
+    }
+
+    public WebDriver getDriver() {
+        return this.driver;
     }
 }
