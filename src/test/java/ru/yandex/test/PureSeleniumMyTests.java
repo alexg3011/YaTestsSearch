@@ -8,8 +8,7 @@ import java.time.Duration;
 
 import static ru.yandex.test.MyTestPage.*;
 
-public class PureSeleniumMyTests extends WebDriverSettings{
-
+public class PureSeleniumMyTests {
     @Test
     public void whenUsingYandexSearch() {
         driver.get("https://yandex.ru/");

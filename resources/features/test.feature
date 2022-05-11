@@ -1,6 +1,6 @@
 Feature: Using yandex search
 
-  Scenario: Search "cucumber"
+  Scenario: Search "qwerty"
     Given Open 'https://yandex.ru/'
     When write word 'qwerty' into search bar
     And  click search button

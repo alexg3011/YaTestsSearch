@@ -8,14 +8,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class WebDriverSettings {
     public static WebDriver driver;
 
-    @Before
-    public void init() {
-        System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
-        driver = new ChromeDriver();
-    }
-
-    @After
-    public void close() {
-        driver.quit();
-    }
+//    @Before
+//    public void init() {
+//        System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
+//        driver = new ChromeDriver();
+//    }
+//
+//    @After
+//    public void close() {
+//        driver.quit();
+//    }
 }
