@@ -1,6 +1,6 @@
 package ru.yandex.test;
 
-import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -15,11 +15,14 @@ import java.time.Duration;
 import static ru.yandex.test.MyTestPage.*;
 
 public class MyStepdefs {
+
+    private WebDriverSettings wds;
+    private ChromeDriver driver;
     @Before
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = wds.init();
     }
+
     @Given("Open {string}")
     public void open(String arg0) {
         driver.get(arg0);
@@ -46,7 +49,7 @@ public class MyStepdefs {
         assert findByXpath(yandexMap).isDisplayed();
     }
 
-    @After
+    @AfterStep
     public void close() {
         driver.quit();
     }
